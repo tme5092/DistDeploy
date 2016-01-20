@@ -31,7 +31,9 @@
             // 
             // DeploySvc
             // 
-            this.ServiceName = "Service1";
+            this.CanPauseAndContinue = true;
+            this.CanShutdown = true;
+            this.ServiceName = "DeployListener";
 
         }
 

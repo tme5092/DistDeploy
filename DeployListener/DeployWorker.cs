@@ -128,8 +128,12 @@ namespace DeployListener
             Runspace runspace = RunspaceFactory.CreateRunspace(runspaceConfiguration);
             runspace.Open();
 
-            RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
-            scriptInvoker.Invoke("Set-ExecutionPolicy Unrestricted");
+            string execPolicy = GetSetting<string>("Set-ExecutionPolicy");
+            if (!string.IsNullOrEmpty(execPolicy))
+            {
+                RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
+                scriptInvoker.Invoke("Set-ExecutionPolicy " + execPolicy);
+            }
 
             Pipeline pipeline = runspace.CreatePipeline();
 
@@ -142,6 +146,8 @@ namespace DeployListener
 
             // Execute PowerShell script
             var results = pipeline.Invoke();
+
+            
 
         }
 
