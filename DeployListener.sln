@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployListener", "DeployListener\DeployListener.csproj", "{14A30768-18A2-42C9-8FA8-77F63C8D8600}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeployListener.Svc", "DeployListener.Svc\DeployListener.Svc.csproj", "{427BBD88-47AF-4BF8-B95B-24CF31DF8A02}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{14A30768-18A2-42C9-8FA8-77F63C8D8600}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14A30768-18A2-42C9-8FA8-77F63C8D8600}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14A30768-18A2-42C9-8FA8-77F63C8D8600}.Release|Any CPU.Build.0 = Release|Any CPU
+		{427BBD88-47AF-4BF8-B95B-24CF31DF8A02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{427BBD88-47AF-4BF8-B95B-24CF31DF8A02}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{427BBD88-47AF-4BF8-B95B-24CF31DF8A02}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{427BBD88-47AF-4BF8-B95B-24CF31DF8A02}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

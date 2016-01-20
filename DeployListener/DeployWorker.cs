@@ -16,7 +16,7 @@ namespace DeployListener
 {
     internal delegate void ProcessShellScript(string filename);
 
-    internal class DeployWorker : Base
+    public class DeployWorker : Base
     {
         public DeployWorker() : base()
         {

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DeployListener
 {
-    class Base
+    public class Base
     {
         private ILog logger;
 
