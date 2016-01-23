@@ -121,33 +121,44 @@ namespace DeployListener
 
         private void ProcessPowerShellScript(string filename)
         {
-            Logger.DebugFormat("Try to execute {0}", filename);
-
-            RunspaceConfiguration runspaceConfiguration = RunspaceConfiguration.Create();
-
-            Runspace runspace = RunspaceFactory.CreateRunspace(runspaceConfiguration);
-            runspace.Open();
-
-            string execPolicy = GetSetting<string>("Set-ExecutionPolicy");
-            if (!string.IsNullOrEmpty(execPolicy))
+            if (string.IsNullOrEmpty(filename))
             {
-                RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
-                scriptInvoker.Invoke("Set-ExecutionPolicy " + execPolicy);
+                Logger.Debug("No file specified - don't execute!");
+            }
+            else if (File.Exists(filename))
+            {
+                Logger.DebugFormat("Try to execute {0}", filename);
+
+                RunspaceConfiguration runspaceConfiguration = RunspaceConfiguration.Create();
+
+                Runspace runspace = RunspaceFactory.CreateRunspace(runspaceConfiguration);
+                runspace.Open();
+
+                string execPolicy = GetSetting<string>("Set-ExecutionPolicy");
+                if (!string.IsNullOrEmpty(execPolicy))
+                {
+                    RunspaceInvoke scriptInvoker = new RunspaceInvoke(runspace);
+                    scriptInvoker.Invoke("Set-ExecutionPolicy " + execPolicy);
+                }
+
+                Pipeline pipeline = runspace.CreatePipeline();
+
+                //Here's how you add a new script with arguments
+                Command myCommand = new Command(filename);
+                //CommandParameter testParam = new CommandParameter("key", "value");
+                //myCommand.Parameters.Add(testParam);
+
+                pipeline.Commands.Add(myCommand);
+
+                // Execute PowerShell script
+                var results = pipeline.Invoke();
+            }
+            else
+            {
+                Logger.WarnFormat("Cannot execute {0} as it does not exist", filename);
             }
 
-            Pipeline pipeline = runspace.CreatePipeline();
 
-            //Here's how you add a new script with arguments
-            Command myCommand = new Command(filename);
-            //CommandParameter testParam = new CommandParameter("key", "value");
-            //myCommand.Parameters.Add(testParam);
-
-            pipeline.Commands.Add(myCommand);
-
-            // Execute PowerShell script
-            var results = pipeline.Invoke();
-
-            
 
         }
 
